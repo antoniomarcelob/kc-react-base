@@ -1,0 +1,23 @@
+version: '3.8'
+
+networks:
+  web_network:
+    driver: overlay
+
+volumes:
+  site_conf:
+
+services:
+  keycloak:
+      image: quay.io/keycloak/keycloak:24.0.2
+      environment:
+        KC_HOSTNAME: localhost
+        KC_HOSTNAME_PORT: 5432
+        KEYCLOAK_ADMIN: admin
+        KEYCLOAK_ADMIN_PASSWORD: admin
+        KC_LOG_LEVEL: info
+      command:
+        [ "start-dev", "--http-port=5432", "--https-port=8080" ]
+      ports:
+        - 5432:5432
+        - 5432:8080

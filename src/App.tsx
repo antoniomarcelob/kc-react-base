@@ -4,9 +4,6 @@ export default function App() {
 
   const auth = useAuth()
 
-  console.log("auth: ", auth.isAuthenticated)
-
-
   if(!auth.isAuthenticated){
     return(
       <button onClick={() => void auth.signinRedirect()}>Login</button>
@@ -14,6 +11,9 @@ export default function App() {
   }
 
   return (
-    <h1>hellow, {auth.user?.profile.preferred_username}</h1>
+    <>
+      <h1>hellow, {auth.user?.profile.given_name}</h1>
+      <button onClick={() => void auth.signoutRedirect({post_logout_redirect_uri: import.meta.env.VITE_APP_URL})}>Logout</button>
+    </>
   )
 }

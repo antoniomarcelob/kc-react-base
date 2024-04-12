@@ -5,7 +5,7 @@ export const oidcConfig: AuthProviderProps = {
     client_id: import.meta.env.VITE_KC_CLIENT_ID,
     redirect_uri: import.meta.env.VITE_APP_URL,
 
-    onSigninCallback: (): void => {
+    onSigninCallback: () => {
             window.history.replaceState(
                 {},
                 document.title,
